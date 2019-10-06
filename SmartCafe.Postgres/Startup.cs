@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Npgsql;
 
 namespace SmartCafe.Postgres
 {
@@ -25,6 +26,16 @@ namespace SmartCafe.Postgres
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration["Postgres:ConnectionString"];
+            var dbPassword = Configuration["Postgres:DbPassword"];
+
+            var builder = new NpgsqlConnectionStringBuilder(connectionString)
+            {
+                Password = dbPassword
+            };
+
+            // services.AddDbContext<ApplicationContext>(options => );
+
             services.AddControllers();
         }
 

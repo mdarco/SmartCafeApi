@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,14 +28,8 @@ namespace SmartCafe.Postgres
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration["Postgres:ConnectionString"];
-            var dbPassword = Configuration["Postgres:DbPassword"];
 
-            var builder = new NpgsqlConnectionStringBuilder(connectionString)
-            {
-                Password = dbPassword
-            };
-
-            // services.AddDbContext<ApplicationContext>(options => );
+            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString));
 
             services.AddControllers();
         }

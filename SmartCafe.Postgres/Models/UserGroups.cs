@@ -13,7 +13,7 @@ namespace SmartCafe.Postgres.Models
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public Instant? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         public virtual ICollection<UserGroupMembers> UserGroupMembers { get; set; }
     }

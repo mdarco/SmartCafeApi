@@ -15,7 +15,7 @@ namespace SmartCafe.Postgres.DbConfig
             builder.HasData(
                 new Users
                 {
-                    // Id = 1,
+                    Id = 1,
                     Username = "mdarco",
                     Password = "$2a$10$yHj0aEM1PSZSGYfkQ3QvYe6REKDlnofPnfbUiVbfLIYnDj52WYiP6",
                     FullName = "Darko Milutinović",

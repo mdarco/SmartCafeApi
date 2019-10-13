@@ -18,7 +18,7 @@ namespace SmartCafe.Postgres.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Note { get; set; }
-        public Instant? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         public virtual ICollection<UserGroupMembers> UserGroupMembers { get; set; }
     }

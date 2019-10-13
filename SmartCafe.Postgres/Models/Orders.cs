@@ -13,7 +13,7 @@ namespace SmartCafe.Postgres.Models
 
         public int Id { get; set; }
         public int TableId { get; set; }
-        public Instant OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
         public bool IsClosed { get; set; }
 
         public virtual Tables Table { get; set; }

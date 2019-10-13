@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NodaTime;
 using Npgsql;
 
 namespace SmartCafe.Postgres
@@ -29,7 +30,10 @@ namespace SmartCafe.Postgres
         {
             var connectionString = Configuration["Postgres:ConnectionString"];
 
-            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString, sql => sql.UseNodaTime()));
+            services.AddSingleton<IClock>(SystemClock.Instance);
+
+            // services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString, sql => sql.UseNodaTime()));
+            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString));
 
             services.AddControllers();
         }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SmartCafe.Postgres.Models;
@@ -9,9 +10,10 @@ using SmartCafe.Postgres.Models;
 namespace SmartCafe.Postgres.Migrations
 {
     [DbContext(typeof(SmartCafeContext))]
-    partial class SmartCafeContextModelSnapshot : ModelSnapshot
+    [Migration("20191013210117_initial-seed-user-groups")]
+    partial class initialseedusergroups
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,23 +38,6 @@ namespace SmartCafe.Postgres.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Piće"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Hrana"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Cigarete"
-                        });
                 });
 
             modelBuilder.Entity("SmartCafe.Postgres.Models.OrderItems", b =>
@@ -293,19 +278,19 @@ namespace SmartCafe.Postgres.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2019, 10, 13, 23, 8, 15, 367, DateTimeKind.Local).AddTicks(9646),
+                            CreatedAt = new DateTime(2019, 10, 13, 23, 1, 17, 499, DateTimeKind.Local).AddTicks(8490),
                             Name = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2019, 10, 13, 23, 8, 15, 371, DateTimeKind.Local).AddTicks(5705),
+                            CreatedAt = new DateTime(2019, 10, 13, 23, 1, 17, 502, DateTimeKind.Local).AddTicks(6533),
                             Name = "MENADZER"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2019, 10, 13, 23, 8, 15, 371, DateTimeKind.Local).AddTicks(5773),
+                            CreatedAt = new DateTime(2019, 10, 13, 23, 1, 17, 502, DateTimeKind.Local).AddTicks(6593),
                             Name = "KONOBAR"
                         });
                 });

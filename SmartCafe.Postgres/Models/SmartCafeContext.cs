@@ -297,6 +297,8 @@ namespace SmartCafe.Postgres.Models
             modelBuilder.ApplyConfiguration(new UsersDbConfig());
             modelBuilder.ApplyConfiguration(new UserGroupsDbConfig());
             modelBuilder.ApplyConfiguration(new CategoriesDbConfig());
+            modelBuilder.ApplyConfiguration(new SubCategoriesDbConfig());
+            modelBuilder.ApplyConfiguration(new TablesDbConfig());
 
             OnModelCreatingPartial(modelBuilder);
         }

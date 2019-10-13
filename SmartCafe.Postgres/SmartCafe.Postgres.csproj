@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191013123813_initial-seed-user.cs" />
+    <Compile Remove="Migrations\20191013123813_initial-seed-user.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

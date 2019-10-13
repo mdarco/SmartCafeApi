@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using SmartCafe.Postgres.DbConfig;
 
 namespace SmartCafe.Postgres.Models
 {
@@ -292,6 +293,8 @@ namespace SmartCafe.Postgres.Models
                     .HasColumnName("username")
                     .HasMaxLength(500);
             });
+
+            modelBuilder.ApplyConfiguration(new UsersDbConfig());
 
             OnModelCreatingPartial(modelBuilder);
         }

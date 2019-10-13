@@ -29,7 +29,7 @@ namespace SmartCafe.Postgres
         {
             var connectionString = Configuration["Postgres:ConnectionString"];
 
-            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString));
+            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString, sql => sql.UseNodaTime()));
 
             services.AddControllers();
         }

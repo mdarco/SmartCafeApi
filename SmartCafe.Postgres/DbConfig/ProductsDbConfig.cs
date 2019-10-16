@@ -13,7 +13,7 @@ namespace SmartCafe.Postgres.DbConfig
         {
             var allergens = new List<string> { "kikiriki", "lešnik", "badem" };
 
-            int productId = 0;
+            int productId = 1;
 
             var products = new Faker<Products>()
                 .StrictMode(true)

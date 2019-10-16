@@ -34,7 +34,7 @@ namespace SmartCafe.Postgres.DbConfig
                 new SubCategories
                 {
                     Id = 4,
-                    Name = "Marloboro",
+                    Name = "Marlboro",
                     CategoryId = 3
                 },
                 new SubCategories
@@ -70,7 +70,7 @@ namespace SmartCafe.Postgres.DbConfig
                 new SubCategories
                 {
                     Id = 10,
-                    Name = "Beyalkoholna pića",
+                    Name = "Bezalkoholna pića",
                     CategoryId = 1
                 },
                 new SubCategories

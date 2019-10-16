@@ -300,6 +300,7 @@ namespace SmartCafe.Postgres.Models
             modelBuilder.ApplyConfiguration(new SubCategoriesDbConfig());
             modelBuilder.ApplyConfiguration(new TablesDbConfig());
             modelBuilder.ApplyConfiguration(new ProductsDbConfig());
+            modelBuilder.ApplyConfiguration(new ProductSubCategoriesDbConfig());
 
             OnModelCreatingPartial(modelBuilder);
         }

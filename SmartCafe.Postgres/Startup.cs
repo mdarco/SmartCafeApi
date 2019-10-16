@@ -33,7 +33,7 @@ namespace SmartCafe.Postgres
             services.AddSingleton<IClock>(SystemClock.Instance);
 
             // services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString, sql => sql.UseNodaTime()));
-            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString));
+            services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString).EnableSensitiveDataLogging());
 
             services.AddControllers();
         }

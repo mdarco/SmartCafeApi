@@ -16,9 +16,11 @@ namespace SmartCafe.Postgres.DbConfig
             int productId = 1;
 
             var products = new Faker<Products>()
-                .StrictMode(true)
                 .RuleFor(p => p.Id, r => productId++)
-                .RuleFor(p => p.Allergens, r => r.Random.ListItems<string>(allergens))
+                .RuleFor(p => p.Allergens, (r, p) => {
+                    List<string> pickedAllergens = (List<string>)r.Random.ListItems(allergens);
+                    return pickedAllergens.ToArray();
+                })
                 .RuleFor(p => p.Name, r => r.Commerce.ProductName())
                 .RuleFor(p => p.Description, r => r.Random.Words())
                 .RuleFor(p => p.PriceWithVat, r => r.Random.Decimal(0, 1000))

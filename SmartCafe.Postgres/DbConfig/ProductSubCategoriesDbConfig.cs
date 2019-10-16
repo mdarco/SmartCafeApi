@@ -13,34 +13,37 @@ namespace SmartCafe.Postgres.DbConfig
     {
         public void Configure(EntityTypeBuilder<ProductSubCategories> builder)
         {
+            List<ProductSubCategories> productSubCategories = new List<ProductSubCategories>();
+
             var faker = new Faker();
 
             for (int i = 1; i <= 100; i++)
             {
-                builder.HasData(
+                int subCategoryId = faker.Random.Number(1, 12);
+                while (KeyExists(i, subCategoryId, productSubCategories))
+                {
+                    subCategoryId = faker.Random.Number(1, 12);
+                }
+
+                // Console.WriteLine(i.ToString() + " | " + subCategoryId.ToString());
+
+                productSubCategories.Add(
                     new ProductSubCategories
                     {
                         ProductId = i,
-                        SubCategoryId = faker.Random.Number(1, 12),
-                        Note = faker.Random.String(10, 100)
+                        SubCategoryId = subCategoryId,
+                        Note = "Note"
                     }
                 );
             }
 
-            // let some products have two sub-categories
-            for (int i = 1; i <= 100; i++)
-            {
-                var productId = faker.Random.Number(1, 100);
+            builder.HasData(productSubCategories.ToArray());
+        }
 
-                builder.HasData(
-                    new ProductSubCategories
-                    {
-                        ProductId = productId,
-                        SubCategoryId = faker.Random.Number(1, 12),
-                        Note = faker.Random.String(10, 100)
-                    }
-                );
-            }
+        private bool KeyExists(int productId, int subCategoryId, List<ProductSubCategories> list)
+        {
+            var existing = list.Where(x => x.ProductId == productId && x.SubCategoryId == subCategoryId).FirstOrDefault();
+            return existing != null;
         }
     }
 }

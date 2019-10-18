@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NodaTime;
 using Npgsql;
+using SmartCafe.Postgres.Hubs;
 
 namespace SmartCafe.Postgres
 {
@@ -35,6 +36,13 @@ namespace SmartCafe.Postgres
             // services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString, sql => sql.UseNodaTime()));
             services.AddDbContext<Models.SmartCafeContext>(options => options.UseNpgsql(connectionString).EnableSensitiveDataLogging());
 
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin().AllowCredentials());
+            });
+
+            services.AddSignalR();
+
             services.AddControllers();
         }
 
@@ -52,8 +60,11 @@ namespace SmartCafe.Postgres
 
             app.UseAuthorization();
 
+            app.UseCors("CorsPolicy");
+
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<SmartCafeHub>("/smart-cafe-hub");
                 endpoints.MapControllers();
             });
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SmartCafe.Postgres.DbConfig;
 
 namespace SmartCafe.Postgres.Models
 {
@@ -54,6 +53,8 @@ namespace SmartCafe.Postgres.Models
                 entity.Property(e => e.OrderId).HasColumnName("order_id");
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.Property(e => e.Note)
                     .HasColumnName("note")
@@ -293,14 +294,6 @@ namespace SmartCafe.Postgres.Models
                     .HasColumnName("username")
                     .HasMaxLength(500);
             });
-
-            modelBuilder.ApplyConfiguration(new UsersDbConfig());
-            modelBuilder.ApplyConfiguration(new UserGroupsDbConfig());
-            modelBuilder.ApplyConfiguration(new CategoriesDbConfig());
-            modelBuilder.ApplyConfiguration(new SubCategoriesDbConfig());
-            modelBuilder.ApplyConfiguration(new TablesDbConfig());
-            modelBuilder.ApplyConfiguration(new ProductsDbConfig());
-            modelBuilder.ApplyConfiguration(new ProductSubCategoriesDbConfig());
 
             OnModelCreatingPartial(modelBuilder);
         }

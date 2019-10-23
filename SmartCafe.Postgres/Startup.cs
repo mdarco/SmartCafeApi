@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using NodaTime;
 using Npgsql;
 using SmartCafe.Postgres.Hubs;
+using AutoMapper;
 
 namespace SmartCafe.Postgres
 {
@@ -30,6 +31,8 @@ namespace SmartCafe.Postgres
         public void ConfigureServices(IServiceCollection services)
         {
             var connectionString = Configuration["Postgres:ConnectionString"];
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddSingleton<IClock>(SystemClock.Instance);
 

@@ -8,7 +8,12 @@ using AutoMapper;
 
 namespace SmartCafe.Postgres.DAL
 {
-    public class Users
+    public interface IUsersDal
+    {
+        Task<UserDto> GetUser(string username);
+    }
+
+    public class Users : IUsersDal
     {
         private readonly SmartCafeContext _dbContext;
         private readonly IMapper _mapper;

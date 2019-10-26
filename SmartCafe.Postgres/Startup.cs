@@ -15,6 +15,7 @@ using NodaTime;
 using Npgsql;
 using SmartCafe.Postgres.Hubs;
 using AutoMapper;
+using SmartCafe.Postgres.DAL;
 
 namespace SmartCafe.Postgres
 {
@@ -47,6 +48,8 @@ namespace SmartCafe.Postgres
             services.AddSignalR();
 
             services.AddControllers();
+
+            services.AddScoped<IUsersDal, Users>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,5 +16,6 @@ namespace SmartCafe.Postgres.DTO
         public string Note { get; set; }
         public DateTime? CreatedAt { get; set; }
         public List<string> UserGroups { get; set; }
+        public string Token { get; set; }
     }
 }

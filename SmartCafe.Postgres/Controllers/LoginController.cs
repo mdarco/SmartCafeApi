@@ -43,11 +43,19 @@ namespace SmartCafe.Postgres.Controllers
                 return Unauthorized();
             }
 
-            // TODO: create token
-            string token = TokenManager.GenerateToken();
+            string token = TokenManager.GenerateToken(new {
+                user.Id,
+                user.Username,
+                user.FullName,
+                user.UserGroups
+            });
 
-            return Ok(new { 
-                Id = user.Id, Username = user.Username, FullName = user.FullName, UserGroups = user.UserGroups, Token = token
+            return Ok(new {
+                user.Id,
+                user.Username,
+                user.FullName,
+                user.UserGroups,
+                Token = token
             });
         }
     }

@@ -11,23 +11,31 @@ namespace SmartCafe.Postgres.BL
 {
     public static class TokenManager
     {
-        public static string GenerateToken()
+        public static string GenerateToken(object payload)
         {
+            string signingKey = Startup.StaticConfig["Token:SigningKey"];
+
+            var claims = new Dictionary<string, object>() {
+                { "Payload", payload }
+            };
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]{
-                    new Claim("UserID",user.Id.ToString())
-                }),
+                Claims = claims,
+
                 Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.key)), SecurityAlgorithms.HmacSha256Signature),
-                
+
+                SigningCredentials =
+                    new SigningCredentials(
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey)),
+                        SecurityAlgorithms.HmacSha256Signature)                
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityToken = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(securityToken);
 
-            // return Ok(new { token });
+            return token;
         }
     }
 }

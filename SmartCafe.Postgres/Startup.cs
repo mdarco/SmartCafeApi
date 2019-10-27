@@ -43,7 +43,7 @@ namespace SmartCafe.Postgres
 
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin().AllowCredentials());
+                    builder => builder.AllowAnyOrigin());
             });
 
             services.AddSignalR();

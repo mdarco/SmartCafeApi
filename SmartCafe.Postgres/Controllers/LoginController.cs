@@ -11,8 +11,8 @@ using SmartCafe.Postgres.BL;
 
 namespace SmartCafe.Postgres.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         private readonly IUsersDal _dal;
@@ -22,6 +22,11 @@ namespace SmartCafe.Postgres.Controllers
         {
             this._dal = dal;
             this._logger = logger;
+        }
+
+        public string Get()
+        {
+            return "Test";
         }
 
         [HttpPost]
@@ -43,14 +48,16 @@ namespace SmartCafe.Postgres.Controllers
                 return Unauthorized();
             }
 
-            string token = TokenManager.GenerateToken(new {
+            string token = TokenManager.GenerateToken(new
+            {
                 user.Id,
                 user.Username,
                 user.FullName,
                 user.UserGroups
             });
 
-            return Ok(new {
+            return Ok(new
+            {
                 user.Id,
                 user.Username,
                 user.FullName,

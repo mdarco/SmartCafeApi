@@ -24,11 +24,6 @@ namespace SmartCafe.Postgres.Controllers
             this._logger = logger;
         }
 
-        public string Get()
-        {
-            return "Test";
-        }
-
         [HttpPost]
         public async Task<ActionResult<UserDto>> Login(LoginDto credentials)
         {

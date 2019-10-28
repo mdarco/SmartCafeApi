@@ -20,7 +20,7 @@
     "SmartCafe.Postgres": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/login",
+      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

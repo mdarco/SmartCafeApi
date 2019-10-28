@@ -14,7 +14,7 @@ namespace SmartCafe.Postgres.BL
             byte[] data = Convert.FromBase64String(base64Password);
             string decodedPassword = ASCIIEncoding.ASCII.GetString(data);
 
-            return BCrypt.Net.BCrypt.Verify(decodedPassword, password);
+            return BCrypt.Net.BCrypt.Verify(decodedPassword, password, hashType: BCrypt.Net.HashType.SHA256);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace SmartCafe.Postgres
         public AutoMapping()
         {
             CreateMap<Users, UserDto>();
+            CreateMap<Tables, TableDto>();
         }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using NodaTime;
 using Npgsql;
 using SmartCafe.Postgres.Hubs;
@@ -51,6 +52,11 @@ namespace SmartCafe.Postgres
 
             services.AddControllers();
 
+            services.AddSwaggerGen(s =>
+            {
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "SmartCafe API", Version = "v1" });
+            });
+
             services.AddScoped<IUsersDal, Users>();
             services.AddScoped<ITablesDal, Tables>();
         }
@@ -63,7 +69,16 @@ namespace SmartCafe.Postgres
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(s =>
+            {
+                s.SwaggerEndpoint("/swagger/v1/swagger.json", "Smart Cafe API v1");
+
+                // to serve Swagger UI at the app root
+                s.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 

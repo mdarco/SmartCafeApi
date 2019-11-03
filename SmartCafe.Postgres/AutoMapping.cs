@@ -14,6 +14,7 @@ namespace SmartCafe.Postgres
         {
             CreateMap<Users, UserDto>();
             CreateMap<Tables, TableDto>();
+            CreateMap<Products, ProductDto>();
         }
     }
 }

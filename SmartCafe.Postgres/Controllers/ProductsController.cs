@@ -15,9 +15,9 @@ namespace SmartCafe.Postgres.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductsDal _dal;
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(IProductsDal dal, ILogger<LoginController> logger)
+        public ProductsController(IProductsDal dal, ILogger<ProductsController> logger)
         {
             this._dal = dal;
             this._logger = logger;

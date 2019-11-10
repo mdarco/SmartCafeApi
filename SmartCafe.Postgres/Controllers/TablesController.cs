@@ -15,9 +15,9 @@ namespace SmartCafe.Postgres.Controllers
     public class TablesController : ControllerBase
     {
         private readonly ITablesDal _dal;
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<TablesController> _logger;
 
-        public TablesController(ITablesDal dal, ILogger<LoginController> logger)
+        public TablesController(ITablesDal dal, ILogger<TablesController> logger)
         {
             this._dal = dal;
             this._logger = logger;

@@ -60,6 +60,7 @@ namespace SmartCafe.Postgres
             services.AddScoped<IUsersDal, Users>();
             services.AddScoped<ITablesDal, Tables>();
             services.AddScoped<IProductsDal, Products>();
+            services.AddScoped<IOrdersDal, Orders>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

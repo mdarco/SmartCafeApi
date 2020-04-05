@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using SmartCafe.Postgres.DAL;
 using SmartCafe.Postgres.DTO;
+using SmartCafe.Postgres.Hubs;
 
 namespace SmartCafe.Postgres.Controllers
 {
@@ -16,16 +18,20 @@ namespace SmartCafe.Postgres.Controllers
     {
         private readonly IProductsDal _dal;
         private readonly ILogger<ProductsController> _logger;
+        private readonly IHubContext<SmartCafeHub> _hubContext;
 
-        public ProductsController(IProductsDal dal, ILogger<ProductsController> logger)
+        public ProductsController(IProductsDal dal, ILogger<ProductsController> logger, IHubContext<SmartCafeHub> hubContext)
         {
             this._dal = dal;
             this._logger = logger;
+            this._hubContext = hubContext;
         }
 
         [HttpGet]
         public ActionResult<List<ProductDto>> GetAllProducts()
         {
+            // await this._hubContext.Clients.All.SendAsync("ReturningAllProducts", "some message");
+
             var products = this._dal.GetAllProducts();
             return Ok(products);
         }

@@ -27,7 +27,7 @@ namespace SmartCafe.Postgres.Models
         public virtual DbSet<UserGroups> UserGroups { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,7 +35,9 @@ namespace SmartCafe.Postgres.Models
             {
                 entity.ToTable("categories");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -54,11 +56,13 @@ namespace SmartCafe.Postgres.Models
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
 
-                entity.Property(e => e.Quantity).HasColumnName("quantity");
+                entity.Property(e => e.IsDelivered).HasColumnName("is_delivered");
 
                 entity.Property(e => e.Note)
                     .HasColumnName("note")
                     .HasMaxLength(1000);
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderItems)
@@ -77,7 +81,9 @@ namespace SmartCafe.Postgres.Models
             {
                 entity.ToTable("orders");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.IsClosed).HasColumnName("is_closed");
 
@@ -154,7 +160,9 @@ namespace SmartCafe.Postgres.Models
             {
                 entity.ToTable("products");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Allergens).HasColumnName("allergens");
 
@@ -180,7 +188,9 @@ namespace SmartCafe.Postgres.Models
             {
                 entity.ToTable("sub_categories");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
@@ -200,7 +210,9 @@ namespace SmartCafe.Postgres.Models
             {
                 entity.ToTable("tables");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("description")
@@ -262,11 +274,14 @@ namespace SmartCafe.Postgres.Models
             {
                 entity.ToTable("users");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnName("created_at")
-                    .HasColumnType("timestamp without time zone");
+                    .HasColumnType("timestamp without time zone")
+                    .HasDefaultValueSql("now()");
 
                 entity.Property(e => e.Email)
                     .HasColumnName("email")

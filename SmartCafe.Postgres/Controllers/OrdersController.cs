@@ -107,6 +107,6 @@ namespace SmartCafe.Postgres.Controllers
             return Ok();
         }
 
-        #endregion]
+        #endregion
     }
 }
